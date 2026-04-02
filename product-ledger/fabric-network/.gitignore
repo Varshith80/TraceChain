@@ -1,0 +1,9 @@
+# Crypto material (generated)
+crypto-config/
+
+# Channel artifacts (generated)
+channel-artifacts/
+
+# Docker volumes
+*.block
+

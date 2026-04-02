@@ -1,0 +1,159 @@
+version: '3.8'
+
+# Production Docker Compose Configuration
+# Uses Docker secrets for secure credential management
+# No hardcoded credentials
+
+services:
+  # PostgreSQL Database for User Management
+  postgres:
+    image: postgres:15-alpine
+    container_name: product-ledger-db-prod
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB: ${POSTGRES_DB:-product_ledger_users}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    secrets:
+      - postgres_user
+      - postgres_password
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$(cat /run/secrets/postgres_user)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+    networks:
+      - product-ledger-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  # Backend API Server
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.production
+    container_name: product-ledger-backend-prod
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      # Database connection (from secrets)
+      DATABASE_URL: postgresql://${POSTGRES_USER}@postgres:5432/${POSTGRES_DB:-product_ledger_users}?password=${POSTGRES_PASSWORD}
+      # JWT (from secrets)
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      # CORS
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      # Fabric Configuration
+      FABRIC_USE_MOCK: "false"
+      FABRIC_CHANNEL_NAME: ${FABRIC_CHANNEL_NAME:-productledger-channel}
+      FABRIC_CHAINCODE_NAME: ${FABRIC_CHAINCODE_NAME:-productledger}
+      FABRIC_PEER_ENDPOINT: ${FABRIC_PEER_ENDPOINT:-peer0.org1.example.com:7051}
+      FABRIC_CONNECTION_PROFILE: ${FABRIC_CONNECTION_PROFILE:-/app/fabric-network/connection-profile.json}
+      FABRIC_WALLET_PATH: ${FABRIC_WALLET_PATH:-/app/wallet}
+      FABRIC_IDENTITY_LABEL: ${FABRIC_IDENTITY_LABEL:-appUser}
+      FABRIC_AS_LOCALHOST: ${FABRIC_AS_LOCALHOST:-false}
+      FABRIC_ENABLE_EVENT_LISTENER: ${FABRIC_ENABLE_EVENT_LISTENER:-true}
+      # Certificate-based identity (production)
+      FABRIC_CERT_PATH: ${FABRIC_CERT_PATH}
+      FABRIC_KEY_PATH: ${FABRIC_KEY_PATH}
+      FABRIC_MSP_ID: ${FABRIC_MSP_ID:-Org1MSP}
+      FABRIC_TLS_ENABLED: ${FABRIC_TLS_ENABLED:-true}
+      # Rate Limiting
+      RATE_LIMIT_GLOBAL_PER_MINUTE: ${RATE_LIMIT_GLOBAL_PER_MINUTE:-1000}
+      RATE_LIMIT_STRICT_MAX: ${RATE_LIMIT_STRICT_MAX:-10}
+      # Request Size
+      MAX_REQUEST_SIZE: ${MAX_REQUEST_SIZE:-1048576}
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    secrets:
+      - jwt_secret
+      - postgres_user
+      - postgres_password
+    ports:
+      - "${BACKEND_PORT:-3001}:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./server/logs:/app/logs
+      - ./fabric-network:/app/fabric-network:ro
+      - ./wallet:/app/wallet:ro
+      - fabric_certs:/app/certs:ro
+    restart: unless-stopped
+    networks:
+      - product-ledger-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend (Production)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend.production
+    container_name: product-ledger-frontend-prod
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+      VITE_VERIFY_DOMAIN: ${VITE_VERIFY_DOMAIN}
+      VITE_VERIFY_PROTOCOL: ${VITE_VERIFY_PROTOCOL:-https}
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+      - "${FRONTEND_HTTPS_PORT:-443}:443"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - product-ledger-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+volumes:
+  postgres_data:
+    driver: local
+  fabric_certs:
+    driver: local
+
+secrets:
+  postgres_user:
+    file: ./secrets/postgres_user.txt
+  postgres_password:
+    file: ./secrets/postgres_password.txt
+  jwt_secret:
+    file: ./secrets/jwt_secret.txt
+
+networks:
+  product-ledger-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+

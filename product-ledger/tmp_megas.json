@@ -1,0 +1,197 @@
+﻿[
+    {
+        "objectType":  "MegaQR",
+        "megaID":  "MEGA-0144e439a87e53eb",
+        "megaHash":  "6065697a1038c95e646ed6375fe9bfd342a756e7c015b2cf020ba0b7de7e09bd",
+        "product":  "Paracetamol 650",
+        "batchNo":  "B-1783",
+        "mfgDate":  "2026-03-20",
+        "expiryDate":  "2028-03-20",
+        "manufacturerID":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+        "manufacturerName":  "TraceChain Pharma",
+        "childList":  [
+                          "MEGA-0144e439a87e53eb-C00001",
+                          "MEGA-0144e439a87e53eb-C00002",
+                          "MEGA-0144e439a87e53eb-C00003"
+                      ],
+        "committedMessages":  [
+                                  {
+                                      "msg":  "Manufactured",
+                                      "by":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:30:25Z",
+                                      "location":  "factory",
+                                      "device":  "factory-system"
+                                  },
+                                  {
+                                      "msg":  "Batch QA sealed for dispatch",
+                                      "by":  "manufacturer-724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:30:30Z",
+                                      "location":  "",
+                                      "device":  ""
+                                  }
+                              ],
+        "meta":  {
+
+                 },
+        "version":  "1.0",
+        "status":  "active",
+        "createdAt":  "2026-03-24T11:30:25Z",
+        "updatedAt":  "2026-03-24T11:30:30Z"
+    },
+    {
+        "objectType":  "MegaQR",
+        "megaID":  "MEGA-27530d58fb0073d8",
+        "megaHash":  "9310ea69e232df10b7bc8361977030d97a127cd9d45d0ca59ffeb38404bea8f6",
+        "product":  "Paracetamol 650",
+        "batchNo":  "B-1783-Y",
+        "mfgDate":  "2026-03-20",
+        "expiryDate":  "2028-03-20",
+        "manufacturerID":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+        "manufacturerName":  "TraceChain Pharma",
+        "childList":  [
+                          "MEGA-27530d58fb0073d8-C00001",
+                          "MEGA-27530d58fb0073d8-C00002",
+                          "MEGA-27530d58fb0073d8-C00003"
+                      ],
+        "committedMessages":  [
+                                  {
+                                      "msg":  "Manufactured",
+                                      "by":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:34:35Z",
+                                      "location":  "factory",
+                                      "device":  "factory-system"
+                                  },
+                                  {
+                                      "msg":  "Batch QA sealed for dispatch",
+                                      "by":  "manufacturer-724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:34:40Z",
+                                      "location":  "",
+                                      "device":  ""
+                                  }
+                              ],
+        "meta":  {
+
+                 },
+        "version":  "1.0",
+        "status":  "active",
+        "createdAt":  "2026-03-24T11:34:35Z",
+        "updatedAt":  "2026-03-24T11:34:40Z"
+    },
+    {
+        "objectType":  "MegaQR",
+        "megaID":  "MEGA-50cd3a92c863000b",
+        "megaHash":  "5cbfff104d9521660753b82e8dbf449aea646932c9821eb3d86c12777745af9f",
+        "product":  "Paracetamol 650",
+        "batchNo":  "B-1783-FINAL",
+        "mfgDate":  "2026-03-20",
+        "expiryDate":  "2028-03-20",
+        "manufacturerID":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+        "manufacturerName":  "TraceChain Pharma",
+        "childList":  [
+                          "MEGA-50cd3a92c863000b-C00001",
+                          "MEGA-50cd3a92c863000b-C00002",
+                          "MEGA-50cd3a92c863000b-C00003"
+                      ],
+        "committedMessages":  [
+                                  {
+                                      "msg":  "Manufactured",
+                                      "by":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:45:34Z",
+                                      "location":  "factory",
+                                      "device":  "factory-system"
+                                  },
+                                  {
+                                      "msg":  "Batch QA sealed for dispatch",
+                                      "by":  "manufacturer-724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:45:40Z",
+                                      "location":  "",
+                                      "device":  ""
+                                  }
+                              ],
+        "meta":  {
+
+                 },
+        "version":  "1.0",
+        "status":  "active",
+        "createdAt":  "2026-03-24T11:45:34Z",
+        "updatedAt":  "2026-03-24T11:45:40Z"
+    },
+    {
+        "objectType":  "MegaQR",
+        "megaID":  "MEGA-5a0c806a9e8397cd",
+        "megaHash":  "0e9982d86035ea4ac60bb8d0556b660bae56bfd150498656a85dc1d38f901eb1",
+        "product":  "Paracetamol 650",
+        "batchNo":  "B-1783-X",
+        "mfgDate":  "2026-03-20",
+        "expiryDate":  "2028-03-20",
+        "manufacturerID":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+        "manufacturerName":  "TraceChain Pharma",
+        "childList":  [
+                          "MEGA-5a0c806a9e8397cd-C00001",
+                          "MEGA-5a0c806a9e8397cd-C00002",
+                          "MEGA-5a0c806a9e8397cd-C00003"
+                      ],
+        "committedMessages":  [
+                                  {
+                                      "msg":  "Manufactured",
+                                      "by":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:34:13Z",
+                                      "location":  "factory",
+                                      "device":  "factory-system"
+                                  },
+                                  {
+                                      "msg":  "Batch QA sealed for dispatch",
+                                      "by":  "manufacturer-724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:34:18Z",
+                                      "location":  "",
+                                      "device":  ""
+                                  }
+                              ],
+        "meta":  {
+
+                 },
+        "version":  "1.0",
+        "status":  "active",
+        "createdAt":  "2026-03-24T11:34:13Z",
+        "updatedAt":  "2026-03-24T11:34:18Z"
+    },
+    {
+        "objectType":  "MegaQR",
+        "megaID":  "MEGA-88deb75626099d27",
+        "megaHash":  "b125d2e4658acb4907d41d0aaa691b3d6bd9aa6a8b3a7b9898f5b6722ec75248",
+        "product":  "Paracetamol 650",
+        "batchNo":  "B-1783-Z",
+        "mfgDate":  "2026-03-20",
+        "expiryDate":  "2028-03-20",
+        "manufacturerID":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+        "manufacturerName":  "TraceChain Pharma",
+        "childList":  [
+                          "MEGA-88deb75626099d27-C00001",
+                          "MEGA-88deb75626099d27-C00002",
+                          "MEGA-88deb75626099d27-C00003"
+                      ],
+        "committedMessages":  [
+                                  {
+                                      "msg":  "Manufactured",
+                                      "by":  "724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:43:04Z",
+                                      "location":  "factory",
+                                      "device":  "factory-system"
+                                  },
+                                  {
+                                      "msg":  "Batch QA sealed for dispatch",
+                                      "by":  "manufacturer-724d46b0-488f-4406-96c8-56505ec6d00a",
+                                      "ts":  "2026-03-24T11:43:09Z",
+                                      "location":  "",
+                                      "device":  ""
+                                  }
+                              ],
+        "meta":  {
+
+                 },
+        "version":  "1.0",
+        "status":  "active",
+        "createdAt":  "2026-03-24T11:43:04Z",
+        "updatedAt":  "2026-03-24T11:43:09Z"
+    }
+]
